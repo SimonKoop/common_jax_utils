@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "common_jax_utils"
+version = "0.0.1"
+authors = [
+    { name="Simon Martinus Koop", email="s.m.koop@tue.nl"}
+]
+description = "Extension of common_dl_utils for JAX and Equinox"
+readme = "README.md"
+requires-python = ">=3.9"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "jax",
+    "equinox",
+    "optax",
+    "numpy",
+    "common_dl_utils @ git+https://github.com/SimonKoop/common_dl_utils.git"
+]
+

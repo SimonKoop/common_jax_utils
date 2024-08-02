@@ -1,0 +1,5 @@
+jax
+equinox
+optax
+numpy
+common_dl_utils@ git+https://github.com/SimonKoop/common_dl_utils.git

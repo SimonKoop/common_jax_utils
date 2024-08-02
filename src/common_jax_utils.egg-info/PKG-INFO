@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: common_jax_utils
+Version: 0.0.1
+Summary: Extension of common_dl_utils for JAX and Equinox
+Author-email: Simon Martinus Koop <s.m.koop@tue.nl>
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: jax
+Requires-Dist: equinox
+Requires-Dist: optax
+Requires-Dist: numpy
+Requires-Dist: common_dl_utils@ git+https://github.com/SimonKoop/common_dl_utils.git
+
+This is a package with stuff that is useful when working in jax in general. It's not specific to any project.
+Part of this package is centered around making the tools from common_dl_utils work optimally for jax/equinox.
+As such it relies heavily on common_dl_utils which can be installed using `pip install git+https://github.com/SimonKoop/common_dl_utils.git --upgrade`
+
+The package is organized as follows:
+- types: registers relevant types in the type_registry from common_dl_utils
+- tree_utils: some utilities for working with pytrees
+- run_utils: extends the tools from common_dl_utils.config_realization to create models or run experiments from a config together with a jax prng key.
+- wandb_utils: hooks the tools from run_utils to wandb. 
+- debug_utils: tools for debugging
+- metrics: a collection of metrics based on the framework setup in common_dl_utils.metrics
+- decorators: a collection of decorators that are useful when working with jax
+- masks: a collection of masking functions for masking parts of equinox modules for use in optax optimizers (e.g. for weight decay)

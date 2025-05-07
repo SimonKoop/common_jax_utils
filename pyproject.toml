@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "common_jax_utils"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
     { name="Simon Martinus Koop", email="s.m.koop@tue.nl"}
 ]

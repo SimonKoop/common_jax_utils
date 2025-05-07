@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: common_jax_utils
-Version: 0.0.2
+Version: 0.0.3
 Summary: Extension of common_dl_utils for JAX and Equinox
 Author-email: Simon Martinus Koop <s.m.koop@tue.nl>
 Classifier: Programming Language :: Python :: 3

@@ -4,6 +4,15 @@ Because much of optax works with factory functions, these don't always
 play nice with the config_realization tools from common_dl_utils when it comes to type annotations
 (e.g. the type annotation for mask in adamw is Optional[Union[Any, Callable[[optax.Params], Any]]])
 """
+from typing import Optional, Callable, Union
+
+import optax
+
+from common_jax_utils.types import register_type
+
+@register_type
+class Schedule:
+    pass
 
 def single_optimizer(
         optimizer_type: type[optax.GradientTransformation],

@@ -8,11 +8,7 @@ from typing import Optional, Callable, Union
 
 import optax
 
-from common_jax_utils.types import register_type
-
-@register_type
-class Schedule:
-    pass
+from common_jax_utils.types import Schedule
 
 def single_optimizer(
         optimizer_type: type[optax.GradientTransformation],

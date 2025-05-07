@@ -4,7 +4,7 @@ Module with various masking functions for the use of e.g. weight decay on parts 
 from typing import Union, Callable
 from functools import partial
 
-from jax import numpy as jnp
+import jax
 from jax import tree_util
 import equinox as eqx
 from jaxtyping import PyTree

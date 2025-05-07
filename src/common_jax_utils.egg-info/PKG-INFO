@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: common_jax_utils
-Version: 0.0.1
+Version: 0.0.2
 Summary: Extension of common_dl_utils for JAX and Equinox
 Author-email: Simon Martinus Koop <s.m.koop@tue.nl>
 Classifier: Programming Language :: Python :: 3
@@ -14,6 +14,7 @@ Requires-Dist: equinox
 Requires-Dist: optax
 Requires-Dist: numpy
 Requires-Dist: common_dl_utils@ git+https://github.com/SimonKoop/common_dl_utils.git
+Dynamic: license-file
 
 This is a package with stuff that is useful when working in jax in general. It's not specific to any project.
 Part of this package is centered around making the tools from common_dl_utils work optimally for jax/equinox.

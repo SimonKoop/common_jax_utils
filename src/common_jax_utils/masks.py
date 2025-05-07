@@ -7,8 +7,10 @@ from functools import partial
 from jax import numpy as jnp
 from jax import tree_util
 import equinox as eqx
+from jaxtyping import PyTree
 
-
+def array_mask(tree: PyTree):
+    return jax.tree.map(eqx.is_array, tree, is_leaf=lambda x: x is None or eqx.is_array(x))
 
 def _sub_model_masking_function(key_path, value, sub_model_path):
     return all(actual.name == target for actual, target in zip(key_path, sub_model_path))
@@ -48,14 +50,14 @@ def _intersection(*values:Union[bool, None]):
         return None
     return all(values)
 
-def union_mask(model:eqx.Module, mask_functions:Callable):
+def union_mask(model:eqx.Module, *mask_functions:Callable):
     """ 
     return the union of several masks (logical or / any)
     """
     masks = [mask_function(model) for mask_function in mask_functions]
     return tree_util.tree_map(_union, *masks)
 
-def intersection_mask(model:eqx.Module, mask_functions:Callable):
+def intersection_mask(model:eqx.Module, *mask_functions:Callable):
     """ 
     return the intersection of several masks (logical and / all)
     """

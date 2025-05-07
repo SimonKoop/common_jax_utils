@@ -6,6 +6,7 @@ src/common_jax_utils/debug_utils.py
 src/common_jax_utils/decorators.py
 src/common_jax_utils/masks.py
 src/common_jax_utils/metrics.py
+src/common_jax_utils/optimizer_factory.py
 src/common_jax_utils/run_utils.py
 src/common_jax_utils/tree_utils.py
 src/common_jax_utils/types.py

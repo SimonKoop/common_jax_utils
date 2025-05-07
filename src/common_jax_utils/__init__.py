@@ -26,5 +26,6 @@ import common_jax_utils.wandb_utils as wandb_utils
 import common_jax_utils.debug_utils as debug_utils
 import common_jax_utils.metrics as metrics
 import common_jax_utils.decorators as decorators
+import common_jax_utils.optimizer_factory as optimizer_factory
 import common_jax_utils.masks as masks
 

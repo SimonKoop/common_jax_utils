@@ -12,6 +12,9 @@ from jaxtyping import PyTree
 def array_mask(tree: PyTree):
     return jax.tree.map(eqx.is_array, tree, is_leaf=lambda x: x is None or eqx.is_array(x))
 
+def inexact_array_mask(tree: PyTree):
+    return jax.tree.map(eqx.is_inexact_array, tree, is_leaf=lambda x: x is None or eqx.is_array(x))
+
 def _sub_model_masking_function(key_path, value, sub_model_path):
     return all(actual.name == target for actual, target in zip(key_path, sub_model_path))
 

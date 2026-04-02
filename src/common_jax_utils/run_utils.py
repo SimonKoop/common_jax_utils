@@ -216,7 +216,7 @@ def get_experiment_from_config_and_key(
     if trainer_default_module_key is not None:
         tdm = config[trainer_default_module_key]
         if not isinstance(tdm, ModuleType):
-            tdm = load_from_path(name='trainer_default_module', path=tdm)
+            tdm = load_from_path(path=tdm)
         default_modules.append(tdm)
     if isinstance(additional_trainer_default_modules, (list, tuple)):
         default_modules += list(additional_trainer_default_modules)

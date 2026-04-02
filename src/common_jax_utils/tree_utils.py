@@ -1,10 +1,11 @@
-from typing import Callable, Any, Optional
+from typing import Callable, Any, Optional, Hashable
 from functools import partial
 
 import jax
 from jax import tree_util
 from jax import numpy as jnp
 import numpy as np
+import equinox as eqx
 
 Pytree = Any
 
@@ -67,3 +68,59 @@ def normal_like(key:jax.Array, tree:Pytree, is_leaf:Optional[Callable[[Any], boo
     :returns: a new pytree with the same structure as tree, but with the value at each leaf sampled using jax.random.normal
     """
     return prng_tree_map(f=lambda x, key: jax.random.normal(key, shape=x.shape), tree=tree, key=key, is_leaf=is_leaf)
+
+
+# all of this ended up no longer beeing useful because jax introduced jax.tree.broadcast :)
+
+# class _ValueWrapper(eqx.Module):
+#     value: Pytree
+
+# def _insert_path_and_value_into_nested_dictionary(path:tree_util.KeyPath, value:Any, dictionary:dict):
+#     if len(path) == 0:
+#         raise ValueError("Cannot insert empty path into nested dictionary.")
+#     elif len(path) == 1:
+#         dictionary[path[0]] = _ValueWrapper(value)
+#     else:
+#         current = path[0]
+#         rest = path[1:]
+#         sub_dictionary = dictionary.setdefault(current, {})
+#         _insert_path_and_value_into_nested_dictionary(rest, value, sub_dictionary)
+
+# class PrefixTree(eqx.Module):
+#     pytree: Pytree
+#     path_dict: dict
+#     _is_leaf: Callable
+
+#     def __init__(self, pytree:Pytree, include_None:bool):
+#         self.pytree = tree_util.tree_map(lambda x: x, pytree)  # copies the pytree
+#         self._is_leaf = (staticmethod(lambda x: x is None) if include_None else None)
+#         self.path_dict = {}
+#         for path, value in tree_util.tree_leaves_with_path(
+#             pytree,
+#             is_leaf=self._is_leaf
+#         ):
+#             _insert_path_and_value_into_nested_dictionary(path, value, self.path_dict)
+    
+#     def __getitem__(self, path:tree_util.KeyPath):
+#         value = self.path_dict
+#         full_path = path
+#         if not path:
+#             raise KeyError("Cannot get item from empty path")
+#         while path:
+#             current_key = path[0]
+#             path = path[1:]
+#             try:
+#                 value = value[current_key]
+#             except KeyError:
+#                 raise KeyError(f"{full_path} is not a valid path into {self}.")
+#             if isinstance(value, _ValueWrapper):
+#                 return value.value
+            
+#     def broadcast_to_pytree(self, pytree:Pytree, is_leaf:Optional[Callable]=None):
+#         paths_and_values, tree_def = tree_util.tree_flatten_with_path(pytree, is_leaf=is_leaf)
+#         resulting_paths_and_values = []
+#         for path, _ in paths_and_values:
+#             resulting_paths_and_values[path] = self[path]
+        
+        
+
